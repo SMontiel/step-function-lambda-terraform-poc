@@ -48,6 +48,18 @@ output "lambda_random_number_generator_arn" {
   value       = module.lambda_function_random_number_generator.lambda_function_arn
 }
 
+output "lambda_random_number_generator_log_group_name" {
+  value = module.lambda_function_random_number_generator.lambda_cloudwatch_log_group_name
+}
+
 output "sfn_state_machine" {
   value = aws_sfn_state_machine.sfn_state_machine.arn
+}
+
+output "sfn_cw_log_group_name" {
+  value = aws_cloudwatch_log_group.log_group_for_sfn.name
+}
+
+output "sfn_cw_log_group_arn" {
+  value = aws_cloudwatch_log_group.log_group_for_sfn.arn
 }
