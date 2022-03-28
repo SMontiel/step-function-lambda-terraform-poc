@@ -12,15 +12,7 @@ resource "aws_iam_role" "iam_for_sfn" {
         "Service": "states.amazonaws.com"
       },
       "Action": [
-        "sts:AssumeRole",
-        "logs:CreateLogDelivery",
-        "logs:GetLogDelivery",
-        "logs:UpdateLogDelivery",
-        "logs:DeleteLogDelivery",
-        "logs:ListLogDeliveries",
-        "logs:PutResourcePolicy",
-        "logs:DescribeResourcePolicies",
-        "logs:DescribeLogGroups"
+        "sts:AssumeRole"
       ]
     }
   ]
@@ -108,12 +100,18 @@ EOF
 resource "aws_sfn_state_machine" "sfn_state_machine" {
   name     = "sample-state-machine"
   role_arn = aws_iam_role.iam_for_sfn.arn
-  type     = "STANDARD"
+  type     = "STANDARD" # maximum duration of EXPRESS type is 5 minutes
 
   definition = <<EOF
 {
-  "StartAt": "random-number-generator-lambda-config",
+  "StartAt": "long-running-lambda",
   "States": {
+    "long-running-lambda": {
+      "Comment": "Long running lambda.",
+      "Type": "Task",
+      "Resource": "${module.long_running_lambda_function.lambda_function_arn}",
+      "Next": "random-number-generator-lambda-config"
+    },
     "random-number-generator-lambda-config": {
       "Comment": "To configure the random-number-generator-lambda.",
       "Type": "Pass",

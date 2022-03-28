@@ -3,8 +3,8 @@ variable "name" {
 }
 
 variable "environment" {
-  description = "the name of your environment, e.g. 'test'"
-  default     = "test"
+  description = "the name of your environment, local or production"
+  default     = "local"
 }
 
 variable "aws-region" {

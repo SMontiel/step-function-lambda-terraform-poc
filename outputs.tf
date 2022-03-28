@@ -1,11 +1,9 @@
-output "lambda_1_name" {
-  description = "Name of Lambda 1"
-  value       = module.lambda_function_1.lambda_function_name
+output "long_running_lambda_name" {
+  value       = module.long_running_lambda_function.lambda_function_name
 }
 
-output "lambda_1_arn" {
-  description = "ARN of Lambda 1"
-  value       = module.lambda_function_1.lambda_function_arn
+output "long_running_lambda_arn" {
+  value       = module.long_running_lambda_function.lambda_function_arn
 }
 
 output "lambda_2_name" {

@@ -1,12 +1,13 @@
-module "lambda_function_1" {
+module "long_running_lambda_function" {
   source = "terraform-aws-modules/lambda/aws"
 
   function_name = "my-lambda-1"
   description   = "My awesome lambda function"
   handler       = "index.lambda_handler"
   runtime       = "python3.8"
+  timeout       = 120
 
-  source_path = "lambda_1/index.py"
+  source_path = "long-running-lambda/index.py"
 
   tags = {
     Name = "my-lambda-1"
