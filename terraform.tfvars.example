@@ -1,5 +1,5 @@
 name                  = "step-function-poc"
 environment           = "local" # set to production if you are not using Localstack
 aws-region            = "us-east-1"
-# To send SMS messages is necessary to verify the phone number here: https://us-east-1.console.aws.amazon.com/sns/v3/home?region=us-east-1#/mobile/text-messaging
+# Not really necessary, but to send SMS messages is necessary to verify the phone number here: https://us-east-1.console.aws.amazon.com/sns/v3/home?region=us-east-1#/mobile/text-messaging
 phone_number_for_notification = "+52<<a-phone-number>>"
